@@ -1,3 +1,10 @@
+thrift (0.12.1~bionic2) bionic; urgency=low
+
+  * build for bionic off of 0.12.1 release branch
+  * only build compiler and python library
+
+ -- Neil Williams <neil@reddit.com>  Tue, 12 Mar 2019 10:25:19 -0800
+
 thrift (0.12.1) stable; urgency=low
 
   * update to 0.12.1
