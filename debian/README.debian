@@ -1,0 +1,67 @@
+Setting up your build environment
+=================================
+
+Install the following packages:
+
+apt-get install -y git-buildpackage build-essential devscripts debhelper
+
+
+Building this package
+=====================
+
+This package is maintained with git-buildpackage.
+
+Branches
+--------
+
+upstream
+    This is the upstream branch. Its HEAD should be the exact upstream source
+    to be built.
+
+ubuntu/trusty
+    This contains the actual packaging-ready version.
+
+patch-queue/ubuntu/trusty
+    This is a set of patches on top of upstream. It is for managing quilt
+    patches.
+
+How to build the package
+------------------------
+
+This will build a source package that can be uploaded to Launchpad:
+
+    git checkout ubuntu/trusty
+    gbp buildpackage --git-dist=trusty --git-debian-branch=ubuntu/trusty --git-upstream-tree=branch -S -sa
+
+If you want to build binary packages locally,
+
+    # install build dependencies
+    mk-build-deps --install --root-cmd sudo --remove
+    # do a binary build
+    gbp buildpackage --git-dist=trusty --git-debian-branch=ubuntu/trusty --git-upstream-tree=branch -sa
+
+
+How to update when upstream changes
+-----------------------------------
+
+1. Update `upstream` to the commit you want to build:
+
+    git checkout upstream
+    git merge some_commit_id
+
+2. Rebase the package branch off of upstream:
+
+    git checkout ubuntu/trusty
+    git rebase upstream
+
+2. Rebase the patch queue branch off of upstream, updating the
+   patches as necessary:
+
+    gbp pq switch
+    git rebase upstream
+
+3. Refresh the quilt patches:
+
+    gbp pq switch
+    gbp pq export
+    git commit -a 'Refresh quilt patches'

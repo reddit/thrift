@@ -1,4 +1,11 @@
-thrift (1.0.0-dev) stable; urgency=low
+thrift (0.12.0-1~reddit1) trusty; urgency=medium
+
+  * build for trusty off unreleased 0.12 HEAD
+  * only build compiler and python library
+
+ -- Neil Williams <neil@reddit.com>  Mon, 22 Oct 2018 14:52:59 -0700
+
+thrift (0.9.0) stable; urgency=low
   * update version
   * fix libthrift0.install
 
